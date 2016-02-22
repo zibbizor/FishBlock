@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new AdminBundle\AdminBundle(),
             new TVDBBundle\TVDBBundle(),
             new UserBundle\UserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

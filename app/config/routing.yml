@@ -1,23 +1,27 @@
 user:
     resource: "@UserBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /user
 
 tvdb:
     resource: "@TVDBBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /kittyadmin/tvdb
 
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /kittyadmin
 
 serie:
     resource: "@SerieBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /serie
 
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
