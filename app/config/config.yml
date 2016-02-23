@@ -75,6 +75,41 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
 
+hwi_oauth:
+    connect:
+        confirmation: true
+        registration_form: fos_user.registration.form
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties:
+            facebook: facebook_id
+            google: google_id
+            twitter: twitter_id
+    resource_owners:
+        # Facebook Access
+        facebook:
+            type:                facebook
+            client_id:           123
+            client_secret:       456
+            scope:               "email"
+            options:
+                display: popup
+#        # Google Access
+        google:
+            type:                google
+            client_id:           123
+            client_secret:       456
+            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            options:
+                display: popup
+#        # Twitter Access
+        twitter:
+            type:                twitter
+            client_id:           123
+            client_secret:       456
+            scope:               ""
+
 services:
     fos_user.doctrine_registry:
         alias: doctrine
