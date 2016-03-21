@@ -3,21 +3,15 @@
 
 namespace UserBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fb_users")
+ * @ORM\Table(name="fb_user")
  */
 class User extends BaseUser
 {
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -46,7 +40,11 @@ class User extends BaseUser
      */
     protected $twitter_id;
 
-
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Set facebook_id
