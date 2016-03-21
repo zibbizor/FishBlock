@@ -21,7 +21,7 @@ class LoadSerieData implements FixtureInterface
         //prepare the serie
         for ($ii = 0; $ii < $amtserie; $ii++) {
           $serie = new Serie();
-            $serie->setName('Serie ' + $ii);
+            $serie->setName('Serie ' . $ii);
             $serie->setCountry('FR');
             $serie->setCreationDate(new \DateTime());
             $serie->setCover($cover[$ii]);

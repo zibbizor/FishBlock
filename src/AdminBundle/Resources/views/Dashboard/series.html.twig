@@ -1,0 +1,43 @@
+{% extends 'AdminBundle:Dashboard:base.html.twig' %}
+
+{% block body %}
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Serie Management</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <table class="table table-striped jambo_table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for serie in series %}
+                        <tr>
+                            <td> {{ serie.id }} </td>
+                            <td> {{ serie.name }} </td>
+                            <td>
+                                {% if serie.adminApproved == true %}
+                                    <a href="{{ path('serie_approve', { 'id': serie.id }) }}"><button type="button" class="btn btn-success btn-xs">Approved</button></a>
+                                {% else %}
+                                    <a href="{{ path('serie_approve', { 'id': serie.id }) }}"><button type="button" class="btn btn-warning btn-xs">Unapproved</button></a>
+                                {% endif %}
+                            </td>
+                            <td><a href="{{ path('serie_detail', { 'id': serie.id }) }}"><button type="button" class="btn btn-primary btn-xs">Details</button></a></td>
+                            <td><a href="{{ path('serie_edit', { 'id': serie.id }) }}"><button type="button" class="btn btn-primary btn-xs">Edit</button></a></td>
+                            <td><a href="{{ path('serie_delete', { 'id': serie.id }) }}"><button type="button" class="btn btn-danger btn-xs">Delete</button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
