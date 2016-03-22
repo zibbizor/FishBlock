@@ -53,10 +53,16 @@ class DefaultController extends Controller
      * @Route("/series/delete/{id}", name="serie_delete")
      * @Method("GET")
      */
-    public function seriesDeleteAction()
+    public function seriesDeleteAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('SerieBundle:Serie')->findOneById($id);
 
-        return $this->render('AdminBundle:Dashboard:series.html.twig');
+        $em->remove($serie);
+        $this->addFlash('danger', $serie->getName() . ' has been deleted.');
+        $em->flush();
+
+        return $this->redirectToRoute('serie_index');
     }
 
     /**

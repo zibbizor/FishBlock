@@ -29,6 +29,13 @@ class Serie
     private $name;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="cover", type="string", length=255, nullable=true)
@@ -215,5 +222,45 @@ class Serie
     public function getState()
     {
         return $this->state;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add seasons
+     *
+     * @param \SerieBundle\Entity\Season $seasons
+     * @return Serie
+     */
+    public function addSeason(\SerieBundle\Entity\Season $seasons)
+    {
+        $this->seasons[] = $seasons;
+
+        return $this;
+    }
+
+    /**
+     * Remove seasons
+     *
+     * @param \SerieBundle\Entity\Season $seasons
+     */
+    public function removeSeason(\SerieBundle\Entity\Season $seasons)
+    {
+        $this->seasons->removeElement($seasons);
+    }
+
+    /**
+     * Get seasons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
     }
 }

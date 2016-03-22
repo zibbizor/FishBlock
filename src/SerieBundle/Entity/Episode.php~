@@ -97,4 +97,27 @@ class Episode
     {
         return $this->length;
     }
+
+    /**
+     * Set season
+     *
+     * @param \SerieBundle\Entity\Season $season
+     * @return Episode
+     */
+    public function setSeason(\SerieBundle\Entity\Season $season = null)
+    {
+        $this->season = $season;
+
+        return $this;
+    }
+
+    /**
+     * Get season
+     *
+     * @return \SerieBundle\Entity\Season 
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
 }

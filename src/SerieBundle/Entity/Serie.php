@@ -29,6 +29,13 @@ class Serie
     private $name;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="cover", type="string", length=255, nullable=true)
@@ -255,5 +262,28 @@ class Serie
     public function getSeasons()
     {
         return $this->seasons;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Serie
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
