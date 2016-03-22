@@ -35,7 +35,10 @@
             <script src="https://code.jquery.com/jquery-2.2.0.js" charset="utf-8"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+            <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
             <script src="{{ asset('js/dashboard.js') }}"></script>
+            <script src="{{ asset('js/FishBlock.js') }}"></script>
+
         {% endblock %}
                         </div>
                     </div>
@@ -45,5 +48,15 @@
 
         </div>
     </div>
+
+    {# FlashBag Notifications management #}
+    <script>
+        {% for type, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                RenderNotification('{{ flash }}', '{{ type }}');
+            {% endfor %}
+        {% endfor %}
+    </script>
+
 </body>
 </html>

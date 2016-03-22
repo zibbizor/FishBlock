@@ -67,7 +67,6 @@ class DefaultController extends Controller
      */
     public function seriesEditAction()
     {
-
         return $this->render('AdminBundle:Dashboard:series.html.twig');
     }
 
@@ -77,9 +76,24 @@ class DefaultController extends Controller
      * @Route("/series/approve/{id}", name="serie_approve")
      * @Method("GET")
      */
-    public function seriesApproveAction()
+    public function seriesApproveAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('SerieBundle:Serie')->findOneById($id);
 
-        return $this->render('AdminBundle:Dashboard:series.html.twig');
+        if ($serie->getAdminApproved())
+        {
+            $serie->setAdminApproved(false);
+            $this->addFlash('warning', $serie->getName() . ' has been unapproved.');
+            $em->flush();
+        }
+        else
+        {
+            $serie->setAdminApproved(true);
+            $this->addFlash('success', $serie->getName() . ' has been approved.');
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('serie_index');
     }
 }
