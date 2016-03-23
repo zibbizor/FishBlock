@@ -27,14 +27,7 @@ class Episode
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="length", type="integer")
-     */
-    private $length;
-
+    
     /**
      * @ORM\ManyToOne(targetEntity="Season", inversedBy="episodes")
      * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
@@ -73,29 +66,6 @@ class Episode
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set length
-     *
-     * @param integer $length
-     * @return Episode
-     */
-    public function setLength($length)
-    {
-        $this->length = $length;
-
-        return $this;
-    }
-
-    /**
-     * Get length
-     *
-     * @return integer 
-     */
-    public function getLength()
-    {
-        return $this->length;
     }
 
     /**

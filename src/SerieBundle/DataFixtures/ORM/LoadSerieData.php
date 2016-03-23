@@ -19,7 +19,6 @@ class LoadSerieData implements FixtureInterface
 
         $serie1 = new Serie();
         $serie1->setName('Daredevil');
-        $serie1->setCountry('US');
         $serie1->setCreationDate(new \DateTime());
         $serie1->setCover('http://thetvdb.com/banners/graphical/281662-g3.jpg');
         $serie1->setState(1);
@@ -31,14 +30,12 @@ class LoadSerieData implements FixtureInterface
             $season = new Season();
             $season->setNumber($jj);
             $season->setImage($cover[$jj]);
-            $season->setYear(new \DateTime());
             $season->setSerie($serie1);
 
             //add episodes here
             for ($kk = 1; $kk <= $amtep; $kk++) {
                 $episode = new Episode();
                 $episode->setName('Episode ' + $kk);
-                $episode->setLength(45);
                 $episode->setSeason($season);
 
                 $season->addEpisode($episode);
@@ -50,7 +47,6 @@ class LoadSerieData implements FixtureInterface
 
         $serie2 = new Serie();
         $serie2->setName('Attack On Titan');
-        $serie2->setCountry('JP');
         $serie2->setCreationDate(new \DateTime());
         $serie2->setCover('http://thetvdb.com/banners/graphical/267440-g.jpg');
         $serie2->setState(1);
@@ -62,14 +58,12 @@ class LoadSerieData implements FixtureInterface
             $season = new Season();
             $season->setNumber($jj);
             $season->setImage($cover[$jj]);
-            $season->setYear(new \DateTime());
             $season->setSerie($serie2);
 
             //add episodes here
             for ($kk = 1; $kk <= $amtep; $kk++) {
                 $episode = new Episode();
                 $episode->setName('Episode ' + $kk);
-                $episode->setLength(45);
                 $episode->setSeason($season);
 
                 $season->addEpisode($episode);

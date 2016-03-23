@@ -36,13 +36,6 @@ class Season
     private $image;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="year", type="date")
-     */
-    private $year;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Serie", inversedBy="seasons")
      * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
      */
@@ -103,35 +96,13 @@ class Season
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
         return $this->image;
     }
-
-    /**
-     * Set year
-     *
-     * @param \DateTime $year
-     * @return Season
-     */
-    public function setYear($year)
-    {
-        $this->year = $year;
-
-        return $this;
-    }
-
-    /**
-     * Get year
-     *
-     * @return \DateTime 
-     */
-    public function getYear()
-    {
-        return $this->year;
-    }
+    
     /**
      * Constructor
      */

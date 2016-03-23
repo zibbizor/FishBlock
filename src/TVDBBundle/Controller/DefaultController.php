@@ -36,12 +36,22 @@ class DefaultController extends Controller
      */
     public function requestDetailedSerieAction($id, $lang)
     {
-        $tvdb = new TVDB();
-        $data = $tvdb->requestDetailedSerie($id, $lang);
+        $em = $this->getDoctrine()->getManager();
+        if ($em->getRepository('SerieBundle:Serie')->findOneById($id))
+        {
+            //serie already exist, TODO
+        }
+        else
+        {
+            $tvdb = new TVDB();
+            $data = $tvdb->requestDetailedSerie($id, $lang);
+            $serie = $tvdb->sortDetailedData($data);
 
-        $tvdb->sortDetailedData($data);
-        //var_dump($data);
-        //die;
+            //var_dump($serie);
+
+            $em->persist($serie);
+            $em->flush();
+        }
 
         return $this->render('TVDBBundle:Default:index.html.twig');
     }

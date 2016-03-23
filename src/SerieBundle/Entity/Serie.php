@@ -50,11 +50,11 @@ class Serie
     private $creationDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @var \DateTime
+     * @ORM\Column(name="tvdb_timestamp", type="datetime", nullable=true)
+     * @ORM\Version
      */
-    private $country;
+    private $lastTVDBUpdate;
 
     /**
      * @var bool
@@ -154,30 +154,7 @@ class Serie
     {
         return $this->creationDate;
     }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     * @return Serie
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string 
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
+    
     /**
      * Set adminApproved
      *
@@ -285,5 +262,28 @@ class Serie
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set lastTVDBUpdate
+     *
+     * @param \DateTime $lastTVDBUpdate
+     * @return Serie
+     */
+    public function setLastTVDBUpdate($lastTVDBUpdate)
+    {
+        $this->lastTVDBUpdate = $lastTVDBUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastTVDBUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastTVDBUpdate()
+    {
+        return $this->lastTVDBUpdate;
     }
 }

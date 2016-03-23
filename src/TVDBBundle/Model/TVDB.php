@@ -1,6 +1,9 @@
 <?php
 
 namespace TVDBBundle\Model;
+use SerieBundle\Entity\Serie;
+use SerieBundle\Entity\Season;
+use SerieBundle\Entity\Episode;
 
 /**
  * TVDB class
@@ -55,22 +58,46 @@ class TVDB
      */
     public function sortDetailedData($xml)
     {
-        $hasseasonzero = false;
         $sorted = [];
 
         //First iteration, we gather initial data to set up the necessary boundaries
         foreach ($xml->Episode as $episode)
         {
-            if (intval($episode->SeasonNumber) == 0)
-            {
-                $hasseasonzero = true;
-            }
-
             $sorted[intval($episode->SeasonNumber)][intval($episode->EpisodeNumber)] = $episode;
         }
 
-        var_dump($sorted);
-        die;
+        for ($jj = 0; $jj < sizeof($sorted); $jj++) {
+            $sorted[$jj] = array_values($sorted[$jj]);
+        }
 
+        //var_dump($sorted);
+
+        $serie = new Serie();
+        $serie->setName($xml->Series->SeriesName);
+        $serie->setDescription($xml->Series->Overview);
+        $serie->setCreationDate(new \DateTime());
+        $serie->setState(1);
+        $serie->setAdminApproved(0);
+        $serie->setCover('http://thetvdb.com/banners/' . $xml->Series->banner);
+
+        //var_dump($xml);
+        for ($ii = 0; $ii < sizeof($sorted); $ii++) {
+            $season = new Season();
+            $season->setNumber($sorted[$ii][0]->SeasonNumber);
+            $season->setImage('http://thetvdb.com/banners/seasons/' . $xml->Series->id . '-' . $sorted[$ii][0]->SeasonNumber . '.jpg');
+            $season->setSerie($serie);
+
+            for ($kk = 0; $kk < sizeof($sorted[$ii]); $kk++) {
+              $episode = new Episode();
+                $episode->setName($sorted[$ii][$kk]->EpisodeName);
+                $episode->setSeason($season);
+
+                $season->addEpisode($episode);
+            }
+
+            $serie->addSeason($season);
+        }
+
+        return $serie;
     }
 }
