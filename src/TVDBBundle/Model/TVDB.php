@@ -49,4 +49,28 @@ class TVDB
 
         return $xml;
     }
+
+    /*
+     * Process and rearrange the initial data provided by TVDB, we do this separately for readability
+     */
+    public function sortDetailedData($xml)
+    {
+        $hasseasonzero = false;
+        $sorted = [];
+
+        //First iteration, we gather initial data to set up the necessary boundaries
+        foreach ($xml->Episode as $episode)
+        {
+            if (intval($episode->SeasonNumber) == 0)
+            {
+                $hasseasonzero = true;
+            }
+
+            $sorted[intval($episode->SeasonNumber)][intval($episode->EpisodeNumber)] = $episode;
+        }
+
+        var_dump($sorted);
+        die;
+
+    }
 }

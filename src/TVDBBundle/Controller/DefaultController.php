@@ -22,8 +22,26 @@ class DefaultController extends Controller
         $data = $tvdb->requestSerie($name, $lang);
 
 
-        var_dump($data);
-        die;
+//        var_dump($data);
+//        die;
+
+        return $this->render('TVDBBundle:Default:index.html.twig');
+    }
+
+    /**
+     * Request serie detail data
+     *
+     * @Route("/requestdetail/{id}/{lang}", name="tvdb_requestdetailserie")
+     * @Method("GET")
+     */
+    public function requestDetailedSerieAction($id, $lang)
+    {
+        $tvdb = new TVDB();
+        $data = $tvdb->requestDetailedSerie($id, $lang);
+
+        $tvdb->sortDetailedData($data);
+        //var_dump($data);
+        //die;
 
         return $this->render('TVDBBundle:Default:index.html.twig');
     }
