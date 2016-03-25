@@ -1,8 +1,25 @@
-{# AppBundle/Resources/views/Home/index.html.twig #}
 {% extends 'base.html.twig' %}
-
 {% block title %}Index{% endblock %}
 
 {% block body %}
-    <p>hello screeeeeeeeeeeeeeeeeeeeee</p>
+   <table class="table table-striped" id="actue">
+  		<tr>
+  			<th>Actualité</th>
+  			<th> Diffusé Aujourd'hui</th>
+  		</tr>
+  		<tr>
+  			{% for serie in series %}
+        	 <td>{{ serie.cover }}</td>
+   	 		{% endfor %}
+  		</tr>	
+	</table>	
+
+  <table class="table table-bordered" id="listeserie">		
+     <tr>
+        {% for serie in series %}
+          <td><img class="imgindex" src="{{ serie.cover }}"/></td>
+   	    {% endfor %}
+   	 </tr>
+  </table>	
+
 {% endblock %}
