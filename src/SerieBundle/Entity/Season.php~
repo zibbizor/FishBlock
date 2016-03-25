@@ -36,13 +36,6 @@ class Season
     private $image;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="year", type="date")
-     */
-    private $year;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Serie", inversedBy="seasons")
      * @ORM\JoinColumn(name="serie_id", referencedColumnName="id")
      */
@@ -103,33 +96,84 @@ class Season
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
         return $this->image;
     }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->episodes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set year
+     * Set serie
      *
-     * @param \DateTime $year
+     * @param \SerieBundle\Entity\Serie $serie
      * @return Season
      */
-    public function setYear($year)
+    public function setSerie(\SerieBundle\Entity\Serie $serie = null)
     {
-        $this->year = $year;
+        $this->serie = $serie;
 
         return $this;
     }
 
     /**
-     * Get year
+     * Get serie
      *
-     * @return \DateTime 
+     * @return \SerieBundle\Entity\Serie 
      */
-    public function getYear()
+    public function getSerie()
     {
-        return $this->year;
+        return $this->serie;
+    }
+
+    /**
+     * Add episodes
+     *
+     * @param \SerieBundle\Entity\Episode $episodes
+     * @return Season
+     */
+    public function addEpisode(\SerieBundle\Entity\Episode $episodes)
+    {
+        $this->episodes[] = $episodes;
+
+        return $this;
+    }
+
+    /**
+     * Remove episodes
+     *
+     * @param \SerieBundle\Entity\Episode $episodes
+     */
+    public function removeEpisode(\SerieBundle\Entity\Episode $episodes)
+    {
+        $this->episodes->removeElement($episodes);
+    }
+
+    /**
+     * Get episodes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEpisodes()
+    {
+        return $this->episodes;
+    }
+
+    /**
+     * Get episodes count
+     *
+     * @return string
+     */
+    public function getEpisodesCount()
+    {
+        return sizeof($this->episodes);
     }
 }

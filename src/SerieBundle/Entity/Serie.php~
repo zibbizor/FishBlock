@@ -29,6 +29,13 @@ class Serie
     private $name;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="cover", type="string", length=255, nullable=true)
@@ -43,11 +50,17 @@ class Serie
     private $creationDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @var \DateTime
+     * @ORM\Column(name="tvdb_timestamp", type="datetime", nullable=true)
+     * @ORM\Version
      */
-    private $country;
+    private $lastTVDBUpdate;
+
+    /**
+     * @var int
+     * @ORM\Column(name="tvdb_id", type="integer", nullable=true)
+     */
+    private $TVDBid;
 
     /**
      * @var bool
@@ -149,26 +162,13 @@ class Serie
     }
 
     /**
-     * Set country
+     * Get creationDate
      *
-     * @param string $country
-     * @return Serie
+     * @return string
      */
-    public function setCountry($country)
+    public function getCreationDateString()
     {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string 
-     */
-    public function getCountry()
-    {
-        return $this->country;
+        return $this->creationDate->format('Y-m-d H:i:s');
     }
 
     /**
@@ -215,5 +215,124 @@ class Serie
     public function getState()
     {
         return $this->state;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->seasons = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add seasons
+     *
+     * @param \SerieBundle\Entity\Season $seasons
+     * @return Serie
+     */
+    public function addSeason(\SerieBundle\Entity\Season $seasons)
+    {
+        $this->seasons[] = $seasons;
+
+        return $this;
+    }
+
+    /**
+     * Remove seasons
+     *
+     * @param \SerieBundle\Entity\Season $seasons
+     */
+    public function removeSeason(\SerieBundle\Entity\Season $seasons)
+    {
+        $this->seasons->removeElement($seasons);
+    }
+
+    /**
+     * Get seasons
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Serie
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set lastTVDBUpdate
+     *
+     * @param \DateTime $lastTVDBUpdate
+     * @return Serie
+     */
+    public function setLastTVDBUpdate($lastTVDBUpdate)
+    {
+        $this->lastTVDBUpdate = $lastTVDBUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastTVDBUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastTVDBUpdate()
+    {
+        return $this->lastTVDBUpdate;
+    }
+
+    /**
+     * Get lastTVDBUpdate
+     *
+     * @return string
+     */
+    public function getLastTVDBUpdateString()
+    {
+        return $this->lastTVDBUpdate->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Set TVDBid
+     *
+     * @param integer $tVDBid
+     * @return Serie
+     */
+    public function setTVDBid($tVDBid)
+    {
+        $this->TVDBid = $tVDBid;
+
+        return $this;
+    }
+
+    /**
+     * Get TVDBid
+     *
+     * @return integer 
+     */
+    public function getTVDBid()
+    {
+        return $this->TVDBid;
     }
 }

@@ -113,7 +113,8 @@ body.nav-sm .profile {
 }
 
 .img-circle.profile_img {
-    width: 70%;
+    width: 56px;
+    height: 56px;
     background: #fff;
     margin-left: 15%;
     z-index: 1000;
@@ -776,7 +777,6 @@ li.current-page a {
     display: block;
     height: 55px;
     margin: 0;
-    padding-left: 10px;
 }
 
 .site_title:hover,
@@ -829,7 +829,8 @@ li.current-page a {
 .toggle {
     float: left;
     margin: 0;
-    padding-top: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 70px;
 }
 
@@ -6341,4 +6342,8 @@ ul.notifications {
     color: #E9EDEF;
     float: right;
     opacity: 1;
+}
+
+.cover {
+    padding-bottom: 10px;
 }

@@ -22,19 +22,19 @@ class Episode
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="integer")
+     */
+    private $number;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="length", type="integer")
-     */
-    private $length;
-
+    
     /**
      * @ORM\ManyToOne(targetEntity="Season", inversedBy="episodes")
      * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
@@ -76,25 +76,25 @@ class Episode
     }
 
     /**
-     * Set length
+     * Set season
      *
-     * @param integer $length
+     * @param \SerieBundle\Entity\Season $season
      * @return Episode
      */
-    public function setLength($length)
+    public function setSeason(\SerieBundle\Entity\Season $season = null)
     {
-        $this->length = $length;
+        $this->season = $season;
 
         return $this;
     }
 
     /**
-     * Get length
+     * Get season
      *
-     * @return integer 
+     * @return \SerieBundle\Entity\Season 
      */
-    public function getLength()
+    public function getSeason()
     {
-        return $this->length;
+        return $this->season;
     }
 }
