@@ -57,6 +57,12 @@ class Serie
     private $lastTVDBUpdate;
 
     /**
+     * @var int
+     * @ORM\Column(name="tvdb_id", type="integer", nullable=true)
+     */
+    private $TVDBid;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="admin_approved", type="boolean")
@@ -154,7 +160,17 @@ class Serie
     {
         return $this->creationDate;
     }
-    
+
+    /**
+     * Get creationDate
+     *
+     * @return string
+     */
+    public function getCreationDateString()
+    {
+        return $this->creationDate->format('Y-m-d H:i:s');
+    }
+
     /**
      * Set adminApproved
      *
@@ -285,5 +301,38 @@ class Serie
     public function getLastTVDBUpdate()
     {
         return $this->lastTVDBUpdate;
+    }
+
+    /**
+     * Get lastTVDBUpdate
+     *
+     * @return string
+     */
+    public function getLastTVDBUpdateString()
+    {
+        return $this->lastTVDBUpdate->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Set TVDBid
+     *
+     * @param integer $tVDBid
+     * @return Serie
+     */
+    public function setTVDBid($tVDBid)
+    {
+        $this->TVDBid = $tVDBid;
+
+        return $this;
+    }
+
+    /**
+     * Get TVDBid
+     *
+     * @return integer 
+     */
+    public function getTVDBid()
+    {
+        return $this->TVDBid;
     }
 }

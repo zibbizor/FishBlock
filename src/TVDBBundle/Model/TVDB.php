@@ -71,6 +71,7 @@ class TVDB
         }
 
         //var_dump($sorted);
+        //die;
 
         $serie = new Serie();
         $serie->setName($xml->Series->SeriesName);
@@ -78,6 +79,8 @@ class TVDB
         $serie->setCreationDate(new \DateTime());
         $serie->setState(1);
         $serie->setAdminApproved(0);
+        $serie->setTVDBid($xml->Series->id);
+        $serie->setLastTVDBUpdate(new \DateTime());
         $serie->setCover('http://thetvdb.com/banners/' . $xml->Series->banner);
 
         //var_dump($xml);
@@ -90,6 +93,7 @@ class TVDB
             for ($kk = 0; $kk < sizeof($sorted[$ii]); $kk++) {
               $episode = new Episode();
                 $episode->setName($sorted[$ii][$kk]->EpisodeName);
+                $episode->setNumber($sorted[$ii][$kk]->EpisodeNumber);
                 $episode->setSeason($season);
 
                 $season->addEpisode($episode);

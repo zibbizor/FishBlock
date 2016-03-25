@@ -22,6 +22,13 @@ class Episode
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="number", type="integer")
+     */
+    private $number;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -89,5 +96,28 @@ class Episode
     public function getSeason()
     {
         return $this->season;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     * @return Episode
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer 
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 }

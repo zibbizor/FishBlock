@@ -36,6 +36,7 @@ class LoadSerieData implements FixtureInterface
             for ($kk = 1; $kk <= $amtep; $kk++) {
                 $episode = new Episode();
                 $episode->setName('Episode ' + $kk);
+                $episode->setNumber($kk);
                 $episode->setSeason($season);
 
                 $season->addEpisode($episode);
@@ -64,6 +65,7 @@ class LoadSerieData implements FixtureInterface
             for ($kk = 1; $kk <= $amtep; $kk++) {
                 $episode = new Episode();
                 $episode->setName('Episode ' + $kk);
+                $episode->setNumber($kk);
                 $episode->setSeason($season);
 
                 $season->addEpisode($episode);

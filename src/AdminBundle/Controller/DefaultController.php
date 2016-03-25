@@ -41,10 +41,14 @@ class DefaultController extends Controller
      * @Route("/series/{id}", name="serie_detail")
      * @Method("GET")
      */
-    public function seriesDetailAction()
+    public function seriesDetailAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('SerieBundle:Serie')->findOneById($id);
 
-        return $this->render('AdminBundle:Dashboard:series.html.twig');
+        return $this->render('AdminBundle:Dashboard:series_detail.html.twig', array(
+            'serie' => $serie,
+        ));
     }
 
     /**

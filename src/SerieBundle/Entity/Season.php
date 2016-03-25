@@ -166,4 +166,14 @@ class Season
     {
         return $this->episodes;
     }
+
+    /**
+     * Get episodes count
+     *
+     * @return string
+     */
+    public function getEpisodesCount()
+    {
+        return sizeof($this->episodes);
+    }
 }
