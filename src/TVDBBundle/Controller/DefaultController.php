@@ -21,11 +21,20 @@ class DefaultController extends Controller
         $tvdb = new TVDB();
         $data = $tvdb->requestSerie($name, $lang);
 
+        //var_dump($data);
+        $size = sizeof($data->Series);
+        //var_dump($size);
 
-//        var_dump($data);
-//        die;
+        if ($size == 0)
+        {
+            $this->addFlash('danger', 'No match found for the criteria.');
+            return $this->redirectToRoute('serie_index');
+        }
 
-        return $this->render('TVDBBundle:Default:index.html.twig');
+        return $this->render('TVDBBundle:Default:requestserie.html.twig', array(
+            'data' => $data,
+            'lang' => $lang,
+        ));
     }
 
     /**
@@ -51,8 +60,21 @@ class DefaultController extends Controller
 
             $em->persist($serie);
             $em->flush();
+            $this->addFlash('success', 'Serie ' . $serie->getName() . ' has been added.');
         }
 
-        return $this->render('TVDBBundle:Default:index.html.twig');
+
+        return $this->redirectToRoute('serie_index');
+    }
+
+    /**
+     * Search for a serie
+     *
+     * @Route("/search", name="tvdb_search")
+     * @Method("GET")
+     */
+    public function searchSerieAction()
+    {
+        return $this->render('TVDBBundle:Default:search.html.twig');
     }
 }

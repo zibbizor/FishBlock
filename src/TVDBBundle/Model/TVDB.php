@@ -29,9 +29,7 @@ class TVDB
         curl_close($request);
 
         $xml = simplexml_load_string($data);
-
-        //ensure we only process one item
-        return $xml->Series[0];
+        return $xml;
     }
 
     /*
