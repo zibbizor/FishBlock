@@ -20,6 +20,7 @@ class TVDB
     public function requestSerie($name, $lang)
     {
         $urlbuilder = $this->url . 'GetSeries.php?seriesname=' . $name . '&language=' . $lang;
+        $urlbuilder = str_replace(" ", "%20", $urlbuilder);
 
         $request = curl_init($urlbuilder);
         curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);

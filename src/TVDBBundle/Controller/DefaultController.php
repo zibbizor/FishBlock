@@ -14,7 +14,7 @@ class DefaultController extends Controller
     /**
      * Request serie data
      *
-     * @Route("/requestbase/{name}/{lang}", name="tvdb_requestserie", requirements={"name"="[a-zA-Z1-9]+"})
+     * @Route("/requestbase/{name}/{lang}", name="tvdb_requestserie", requirements={"name"="^[a-zA-Z0-9 ]*$"})
      * @Method("GET")
      */
     public function requestSerieAction($name, $lang)
