@@ -1,22 +1,141 @@
-.active {
-    background-color: #4CAF50;
+body {font-size: 14px; }
+
+ /* -------------------  MENU HEADER -------------------*/
+.haut{
+	background:#f8f8f8; 
+	border-bottom: 1px solid;
+	border-color: #e7e7e7;
+	padding: 4px;
+}
+
+.social {
+    float: right;
+}
+
+.social a {
+    width: 60px;
+    margin: 0px 3px;
+    line-height: 20px;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+}
+
+ /* -------------------  FIN HEADER -------------------*/
+
+
+ /* -------------------  MENU NAV BAR -------------------*/
+
+.navbar-inverse{
+	height: 80px;
+	background: #ffffff;
+	border: none;
+}
+
+#main{
+	margin-top: 15px;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.navbar .nav > li{
+	margin: 0px 2px;
+}
+
+#menu > li > a {
+    padding: 20px 15px;
+    text-align: center;
+    color: #ffffff;
+    width: 115px;
+     line-height: 38px;
+}
+
+.narvbar-right{
+	margin-right: 0px;
+}
+
+#log > li {
+	 margin-top: 15px;
+	text-align: center;
+    color: #ffffff;
+}
+
+#log > li > a{
+    color: #ffffff;
+}
+
+.blightblue {
+    background: #52b9e9 !important;
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.bred {
+    background: #fa3031 !important;
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.bviolet {
+    background: #932ab6 !important;
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.bgreen {
+    background: #43c83c !important;
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.borange {
+    background: #f88529 !important;
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.bblue {
+    background: #1171a3 !important;
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+.bgrey{
+	background: darkgrey !important;
+    color: #fff !important;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.logo{
+  padding-right: 25px;
+}
+ /* ------------------- FIN NAV BAR -------------------*/
+
+
+ /* -------------------  BODY CONTAINER -------------------*/
+
+.bodyactu{
+	margin-top: 50px;
+	height:100px;
 }
 
 .carousel-page{
 	width:100%;
-	height:80px;
-	background-color:#5f666d;
+	background-color:#ffffff;
 	color:white;
 }
 
 .imgslide{
 	width: 100%;
-	height:80px;
+	height:100px;
 }
 
 .imgdif{
-
-	height: 80px;
+	width: 100%;
+	height:100px;
 }
 
 .imgindex{
@@ -28,9 +147,11 @@
 }
 
 #listeserie{
-	margin-top: 50px; 
+	margin-top: 70px; 
 }
 
 .titreth{
 	text-align: center;
 }
+
+
