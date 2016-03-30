@@ -60,7 +60,7 @@ class Serie
      * @var int
      * @ORM\Column(name="tvdb_id", type="integer", nullable=true)
      */
-    private $TVDBid;
+    private $tvdbid;
 
     /**
      * @var bool
@@ -319,9 +319,9 @@ class Serie
      * @param integer $tVDBid
      * @return Serie
      */
-    public function setTVDBid($tVDBid)
+    public function setTVDBid($tvdbid)
     {
-        $this->TVDBid = $tVDBid;
+        $this->tvdbid = $tvdbid;
 
         return $this;
     }
@@ -333,6 +333,6 @@ class Serie
      */
     public function getTVDBid()
     {
-        return $this->TVDBid;
+        return $this->tvdbid;
     }
 }

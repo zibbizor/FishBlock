@@ -20,6 +20,7 @@ class TVDB
     public function requestSerie($name, $lang)
     {
         $urlbuilder = $this->url . 'GetSeries.php?seriesname=' . $name . '&language=' . $lang;
+        $urlbuilder = str_replace(" ", "%20", $urlbuilder);
 
         $request = curl_init($urlbuilder);
         curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
@@ -29,9 +30,7 @@ class TVDB
         curl_close($request);
 
         $xml = simplexml_load_string($data);
-
-        //ensure we only process one item
-        return $xml->Series[0];
+        return $xml;
     }
 
     /*
@@ -66,12 +65,11 @@ class TVDB
             $sorted[intval($episode->SeasonNumber)][intval($episode->EpisodeNumber)] = $episode;
         }
 
+        $sorted = array_values($sorted);
+
         for ($jj = 0; $jj < sizeof($sorted); $jj++) {
             $sorted[$jj] = array_values($sorted[$jj]);
         }
-
-        //var_dump($sorted);
-        //die;
 
         $serie = new Serie();
         $serie->setName($xml->Series->SeriesName);
@@ -83,8 +81,8 @@ class TVDB
         $serie->setLastTVDBUpdate(new \DateTime());
         $serie->setCover('http://thetvdb.com/banners/' . $xml->Series->banner);
 
-        //var_dump($xml);
         for ($ii = 0; $ii < sizeof($sorted); $ii++) {
+
             $season = new Season();
             $season->setNumber($sorted[$ii][0]->SeasonNumber);
             $season->setImage('http://thetvdb.com/banners/seasons/' . $xml->Series->id . '-' . $sorted[$ii][0]->SeasonNumber . '.jpg');
