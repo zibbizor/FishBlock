@@ -5,9 +5,11 @@ namespace AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use SerieBundle\Entity\Serie;
 use SerieBundle\Entity\Season;
 use SerieBundle\Entity\Episode;
+use SerieBundle\Form\SerieType;
 
 class DefaultController extends Controller
 {
@@ -75,9 +77,44 @@ class DefaultController extends Controller
      * @Route("/series/edit/{id}", name="serie_edit")
      * @Method("GET")
      */
-    public function seriesEditAction()
+    public function seriesEditAction($id)
     {
-        return $this->render('AdminBundle:Dashboard:series.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('SerieBundle:Serie')->findOneById($id);
+        $form = $this->createForm(new SerieType(), $serie);
+
+        return $this->render('AdminBundle:Dashboard:series_edit.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Edit a serie
+     *
+     * @Route("/series/edit/{id}", name="serie_editpost")
+     * @Method("POST")
+     */
+    public function seriesEditPostAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('SerieBundle:Serie')->findOneById($id);
+        $form = $this->createForm(new SerieType(), $serie);
+
+        if ($form->handleRequest($request)->isValid())
+        {
+            $em->persist($serie);
+            $em->flush();
+
+            $this->addFlash('success', $serie->getName() . ' has been edited.');
+            return $this->redirectToRoute('serie_index');
+        }
+        else
+        {
+            //There has been an error
+            return $this->render('AdminBundle:Dashboard:series_edit.html.twig', array(
+                'form' => $form->createView(),
+            ));
+        }
     }
 
     /**
