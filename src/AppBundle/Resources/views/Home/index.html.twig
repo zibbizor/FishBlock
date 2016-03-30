@@ -2,66 +2,75 @@
 {% block title %}Index{% endblock %}
 
 {% block body %}
+<div class="bodyactu">
 
-  	<div>
-    	<div class="col-md-4">Actualitée</div>
-    	<div class="col-md-8">Diffusé aujourd'hui</div>
- 	</div>
+	<div class="row">
+	  	<div class="col-md-12">	    	
+		    <div class="col-md-5">
+		    	<div class="panel panel-primary">
+					<div class="panel-heading">	
+						<h3 id="titrese" class="text-left"> ACTU </h3>
+					</div>
+					<div class="panel-body" id="actu"> 
+							  	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									  <!-- Indicators -->
+									  <ol class="carousel-indicators">
+									    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									    <li data-target="#myCarousel" data-slide-to="1"></li>
+									    <li data-target="#myCarousel" data-slide-to="2"></li>
+									    <li data-target="#myCarousel" data-slide-to="3"></li>
+									  </ol>
 
-	<div>
-	    <div class="col-md-4">
-		  	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				  <!-- Indicators -->
-				  <ol class="carousel-indicators">
-				    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				    <li data-target="#myCarousel" data-slide-to="1"></li>
-				    <li data-target="#myCarousel" data-slide-to="2"></li>
-				    <li data-target="#myCarousel" data-slide-to="3"></li>
-				  </ol>
+								 	 <!-- Wrapper for slides -->
+								 	<div class="carousel-inner">	   	
+								   		{% for serie in series %}
+								   			{% if loop.first %}
+								          	<div class="item active"><div class="carousel-page"><img class="imgslide" src="{{ serie.cover }}"/></div></div>
+								          	{% else %}
+								          	<div class="item"><div class="carousel-page"><img class="imgslide" src="{{ serie.cover }}"/></div></div>
+								   			{% endif %}
+								   	    {% endfor %}
+								  	</div>
 
-			 	 <!-- Wrapper for slides -->
-			 	<div class="carousel-inner">	   	
-			   		{% for serie in series %}
-			   			{% if loop.first %}
-			          	<div class="item active"><div class="carousel-page"><img class="imgslide" src="{{ serie.cover }}"/></div></div>
-			          	{% else %}
-			          	<div class="item"><div class="carousel-page"><img class="imgslide" src="{{ serie.cover }}"/></div></div>
-			   			{% endif %}
-			   	    {% endfor %}
-			  	</div>
+								  	 <!-- Controle -->
+								  		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+											<span class="glyphicon glyphicon-chevron-left"></span>
+										</a>
+										<a class="right carousel-control" href="#myCarousel" data-slide="next">
+											<span class="glyphicon glyphicon-chevron-right"></span>
+										</a>
+								</div>		
+					</div>	
+					
+				</div>
+			</div>
 
-			  	 <!-- Controle -->
-			  		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a class="right carousel-control" href="#myCarousel" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-			</div>		
-		</div>	
-
-	    <div class="col-md-8">
-		   
-       		  {% for serie in series %}
-          			<div class="col-md-2"><img class="imgdif" src="{{ serie.cover }}"/></div>
-   	    	  {% endfor %}
-   		   
-	    </div>
-	</div>    
-
-
-
-
-  <table class="table" id="listeserie">
-	 <caption class="titreth"> Series Disponibles</caption>  
-
-     <tr>
-        {% for serie in series %}
-          <td><img class="imgindex" src="{{ serie.cover }}"/></td>
-   	    {% endfor %}
-   	 </tr>
-
-  </table>	
+			<div class="col-md-7">  
+					<div class="panel panel-primary">
+						<div class="panel-heading">	
+							<h3 id="titrese" class="text-left"> Diffusé aujourd'hui </h3>
+					    </div>	 
+					    <div class="panel-body"> 
+					   	 </div>
+					</div> 
+			</div>    
+		</div>
+	</div>
 
 
+	<div class="panel panel-primary" id="listeserie">
+		<div class="panel-heading">
+			<h3 id="titrese" class="text-center"> TOP Series Disponibles </h3>
+		</div>  	 
+		<div class="panel-body"> 	 	
+		     <div class="col-md-12" >
+		        {% for serie in series %}
+		          <div class="col-md-6"><img class="imgindex" src="{{ serie.cover }}"/></div>
+		   	    {% endfor %}
+		   	 </div> 
+		</div>  
+	</div>
+
+
+</div>
 {% endblock %}

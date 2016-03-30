@@ -12,6 +12,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('SerieBundle:Default:index.html.twig');
+        	
+    	$em = $this->getDoctrine()->getManager();
+        $series = $em->getRepository('SerieBundle:Serie')->findAll();
+
+        return $this->render('SerieBundle:Default:index.html.twig', array(
+            'series' => $series,
+        ));
+       
     }
+
+
 }
