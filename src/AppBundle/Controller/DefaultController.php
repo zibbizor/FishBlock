@@ -12,7 +12,7 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
-    {
+    {     
           $em = $this->getDoctrine()->getManager();
           $series = $em->getRepository('SerieBundle:Serie')->findAll();
 
