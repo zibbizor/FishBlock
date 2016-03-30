@@ -1,0 +1,25 @@
+
+<div class="wrapper">
+
+		<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin">
+			<h3 class="form-signin-heading">Bienvenue! Creer un Compte</h3>
+              <hr class="colorgraph"><br>
+
+				 {{ form_widget(form._token) }}
+
+				 {{ form_errors(form) }}
+		    	 {{ form_errors(form.username) }}
+		    	 {{ form_errors(form.email) }}
+		    	 {{ form_errors(form.plainPassword) }}
+
+			    {{ form_row(form.username, { 'attr': {'class': 'form-control','placeholder': "Votre Pseudo..."} }) }}
+			    {{ form_row(form.email, { 'attr': {'class': 'form-control','placeholder': "Votre E-mail..."} }) }}
+			    {{ form_row(form.plainPassword.first, { 'attr': {'class': 'form-control','placeholder': "Votre Password..."} }) }}
+			    {{ form_row(form.plainPassword.second, { 'attr': {'class': 'form-control','placeholder': "Confirmation Password..."} }) }}
+
+		     <div>
+		         <button id="submit" class="btn btn-lg btn-primary btn-block"  name="Submit"  value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" type="Submit">Envoyer</button> 
+		     </div>
+
+		</form>
+</div>		
