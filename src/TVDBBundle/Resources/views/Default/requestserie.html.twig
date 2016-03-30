@@ -1,0 +1,41 @@
+{% extends 'AdminBundle:Dashboard:base.html.twig' %}
+
+{% block body %}
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Select a serie</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <table class="table table-striped jambo_table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Banner</th>
+                    <th>TVDB Page</th>
+                    <th>Select</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for serie in data %}
+                    {% if serie.language == lang %}
+                    <tr>
+                        <td> {{ serie.seriesid }} </td>
+                        <td> {{ serie.SeriesName }} </td>
+                        <td class="text-center">
+                            {% if serie.banner is defined  %}
+                            <img src="http://thetvdb.com/banners/{{ serie.banner }}" alt="">
+                            {% endif %}
+                        </td>
+                        <td><a href="http://thetvdb.com/?tab=series&id={{ serie.seriesid }}" target="_blank"><button type="button" class="btn btn-primary btn-xs">Browse</button></a></td>
+                        <td><a href="{{ path('tvdb_requestdetailserie', { 'id': serie.id, 'lang': 'en' }) }}"><button type="button" class="btn btn-success btn-xs">Select</button></a></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
