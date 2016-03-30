@@ -10,6 +10,7 @@ use SerieBundle\Entity\Serie;
 use SerieBundle\Entity\Season;
 use SerieBundle\Entity\Episode;
 use SerieBundle\Form\SerieType;
+use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -142,5 +143,124 @@ class DefaultController extends Controller
         }
 
         return $this->redirectToRoute('serie_index');
+    }
+
+    /**
+     * Lists all User entities.
+     *
+     * @Route("/users", name="user_index")
+     * @Method("GET")
+     */
+    public function userIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('UserBundle:User')->findAll();
+
+        return $this->render('AdminBundle:Dashboard:users.html.twig', array(
+            'users' => $users,
+        ));
+    }
+
+    /**
+     * Delete a user
+     *
+     * @Route("/users/delete/{id}", name="user_delete")
+     * @Method("GET")
+     */
+    public function userDeleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->findOneById($id);
+
+        $em->remove($user);
+        $this->addFlash('danger', $user->getUsername() . ' has been deleted.');
+        $em->flush();
+
+        return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * Approve or Unapprove a user
+     *
+     * @Route("/users/approve/{id}", name="user_approve")
+     * @Method("GET")
+     */
+    public function userApproveAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->findOneById($id);
+
+        if ($user->isEnabled())
+        {
+            $user->setEnabled(false);
+            $this->addFlash('warning', $user->getUsername() . ' has been unapproved.');
+            $em->flush();
+        }
+        else
+        {
+            $user->setEnabled(true);
+            $this->addFlash('success', $user->getUsername() . ' has been approved.');
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * Ban or Unban a user
+     *
+     * @Route("/users/ban/{id}", name="user_ban")
+     * @Method("GET")
+     */
+    public function userBanAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->findOneById($id);
+
+        if ($user->isLocked())
+        {
+            $user->setLocked(false);
+            $this->addFlash('warning', $user->getUsername() . ' has been unbanned.');
+            $em->flush();
+        }
+        else
+        {
+            $user->setLocked(true);
+            $this->addFlash('success', $user->getUsername() . ' has been banned.');
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * Details of a user
+     *
+     * @Route("/users/{id}", name="user_detail")
+     * @Method("GET")
+     */
+    public function userDetailAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->findOneById($id);
+
+        return $this->render('AdminBundle:Dashboard:user_detail.html.twig', array(
+            'user' => $user,
+        ));
+    }
+
+    /**
+     * Edit a serie
+     *
+     * @Route("/users/edit/{id}", name="user_edit")
+     * @Method("GET")
+     */
+    public function userEditAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $serie = $em->getRepository('UserBundle:User')->findOneById($id);
+        $form = $this->createForm(new SerieType(), $serie);
+
+        return $this->redirectToRoute('user_index');
     }
 }

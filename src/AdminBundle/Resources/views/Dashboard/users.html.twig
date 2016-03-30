@@ -1,0 +1,53 @@
+{% extends 'AdminBundle:Dashboard:base.html.twig' %}
+
+{% block body %}
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>User Management</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <table class="table table-striped jambo_table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Activated</th>
+                    <th>Banned</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td> {{ user.id }} </td>
+                        <td> {{ user.username }} </td>
+                        <td> {{ user.email }} </td>
+                        <td>
+                            {% if user.enabled == true %}
+                                <a href="{{ path('user_approve', { 'id': user.id }) }}"><button type="button" class="btn btn-success btn-xs">Activated</button></a>
+                            {% else %}
+                                <a href="{{ path('user_approve', { 'id': user.id }) }}"><button type="button" class="btn btn-warning btn-xs">Unactivated</button></a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.locked == true %}
+                                <a href="{{ path('user_ban', { 'id': user.id }) }}"><button type="button" class="btn btn-warning btn-xs">Banned</button></a>
+                            {% else %}
+                                <a href="{{ path('user_ban', { 'id': user.id }) }}"><button type="button" class="btn btn-success btn-xs">Not Banned</button></a>
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ path('user_detail', { 'id': user.id }) }}"><button type="button" class="btn btn-primary btn-xs">Details</button></a></td>
+                        <td><a href="{{ path('user_edit', { 'id': user.id }) }}"><button type="button" class="btn btn-primary btn-xs">Edit</button></a></td>
+                        <td><a href="{{ path('user_delete', { 'id': user.id }) }}"><button type="button" class="btn btn-danger btn-xs">Delete</button></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
