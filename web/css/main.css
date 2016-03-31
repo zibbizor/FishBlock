@@ -109,6 +109,11 @@ body {font-size: 14px; }
     margin-left: 5px;
 }
 
+.binv{
+    border-radius: 2px;
+    margin-left: 2px;
+}
+
 .logo{
   padding-right: 25px;
 }
