@@ -79,7 +79,7 @@ class DefaultController extends Controller
         $serie = $em->getRepository('SerieBundle:Serie')->findOneById($id);
 
         return $this->render('SerieBundle:Default:detail_serie_season.html.twig', array(
-            'serie' => $serie,
+            'serie' => $serie, 'seasonnumber' => $season,
         ));
 
     }

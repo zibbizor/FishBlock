@@ -93,6 +93,8 @@ class TVDB
                 $episode->setName($sorted[$ii][$kk]->EpisodeName);
                 $episode->setNumber($sorted[$ii][$kk]->EpisodeNumber);
                 $episode->setSeason($season);
+                $episode->setImage('http://thetvdb.com/banners/' . $sorted[$ii][$kk]->filename);
+                $episode->setDescription($sorted[$ii][$kk]->Overview);
 
                 $season->addEpisode($episode);
             }

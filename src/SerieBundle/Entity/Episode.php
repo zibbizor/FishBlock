@@ -34,6 +34,20 @@ class Episode
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
     
     /**
      * @ORM\ManyToOne(targetEntity="Season", inversedBy="episodes")
@@ -119,5 +133,51 @@ class Episode
     public function getNumber()
     {
         return $this->number;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Episode
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Episode
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
