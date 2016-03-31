@@ -23,11 +23,13 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="log">
+
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <div class="text-center">Hello, {{ app.user.username }}</div>
-            <li class="bgrey"><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
-            <li class="bgrey"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <div class="text-center">Bonjour, {{ app.user.username }}</div>
+            <li class="bgrey"><a href="{{ path('s_panel') }}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li class="bgrey"><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         {% else %}
+
           <li class="bgrey"><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li class="bgrey"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         {% endif %}

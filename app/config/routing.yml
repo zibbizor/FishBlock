@@ -22,7 +22,7 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
-
+    
 # HWIOAuthBundle
 hwi_oauth_security:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
@@ -62,3 +62,4 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+

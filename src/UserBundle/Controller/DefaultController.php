@@ -12,11 +12,11 @@ use UserBundle\Entity\User;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="s_panel")
      */
     public function indexAction()
     {
-        return $this->render('UserBundle:index.html.twig');
+        return $this->render('UserBundle:Profile:panel.html.twig');
     }
 //
 //    /**
