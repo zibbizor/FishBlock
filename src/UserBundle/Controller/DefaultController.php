@@ -11,35 +11,12 @@ use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
+
     /**
-     * @Route("/")
+     * @Route("/", name="s_panel")
      */
     public function indexAction()
     {
-        return $this->render('UserBundle:index.html.twig');
+        return $this->render('UserBundle:Profile:panel.html.twig');
     }
-//
-//    /**
-//     * Ajout d'un utilisateur  [GET ou POST]
-//     * @param Request $request
-//     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-//     */
-//    public function addAction(Request $request)
-//    {
-//        $user = new User();
-//        $form = $this->createForm(new UserType(), $user);
-//        $form->handleRequest($request);
-//        if ($form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($user);
-//            $em->flush();
-//            $flashMessage = "L'utilisateur a bien été ajouté !";
-//
-//        }
-//        return $this->render("UserBundle:index.html.twig", [
-//            "form" => $form->createView()
-//        ]);
-//    }
-
-
 }
