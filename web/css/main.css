@@ -256,3 +256,7 @@ input[type="password"] {
 {
     height: 34px;
 }
+
+.centered{
+    text-align: center;
+}
