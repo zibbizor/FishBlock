@@ -14,17 +14,23 @@
 
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav" id="menu">
-          <li class="blightblue"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+          <li class="blightblue"><a href="{{ path('homepage') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
           <li class="bred"><a href="#"><span class="glyphicon glyphicon-star-empty"></span> News</a></li>
-          <li class="bviolet"><a href="#"><span class="glyphicon glyphicon-play-circle"></span> Series</a></li>
+          <li class="bviolet"><a href="{{ path('s_index') }}"><span class="glyphicon glyphicon-play-circle"></span> Series</a></li>
           <li class="bgreen"><a  href="#"><span class="glyphicon glyphicon-calendar"></span> Calendrier</a></li>
           <li class="borange"><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Dossiers</a></li>
           <li class="bblue"><a href="#"><span class="glyphicon glyphicon-bullhorn"></span> Critiques</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="log">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div class="text-center">Hello, {{ app.user.username }}</div>
+            <li class="bgrey"><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
+            <li class="bgrey"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        {% else %}
           <li class="bgrey"><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li class="bgrey"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
         </ul>
     </div>
   </div>
