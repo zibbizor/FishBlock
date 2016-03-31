@@ -335,4 +335,15 @@ class Serie
     {
         return $this->tvdbid;
     }
+
+    /**
+     * Count seasons
+     *
+     * @return integer
+     */
+    public function countSeasons()
+    {
+        $seasons = $this->getSeasons();
+        return sizeof($seasons);
+    }
 }
